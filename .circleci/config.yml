@@ -7,6 +7,8 @@ executors:
 
 orbs:
   python: circleci/python@2
+  browser-tools: circleci/browser-tools@1.4.6
+
 jobs:
   back_end:
     executor: python-executor
