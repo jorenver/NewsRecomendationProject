@@ -68,14 +68,14 @@ deploy:
             fi
 
 workflows:
-  build-and-test:
+  build-deploy:
     jobs:
-      - build
-        - back_end
-        - front_end
+      - back_end
+      - front_end
       - deploy:
           requires:
-            - build
+            - back_end
+            - front_end
           filters:
             branches:
               only:
