@@ -32,10 +32,6 @@ jobs:
   front_end:
     docker:
       - image: cimg/node:22.2.0-browsers
-    environment:
-      CHROME_BIN: '/usr/bin/google-chrome-stable'
-      NG_CLI_ANALYTICS: 'ci'
-      NODE_OPTIONS: '--max_old_space_size=7500'
     working_directory: ~/repo
     steps:
       - checkout
