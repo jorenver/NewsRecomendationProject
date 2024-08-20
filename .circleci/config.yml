@@ -17,7 +17,7 @@ jobs:
           name: Install DbModel
           command: |
             pip install -r newsrecomendation/DbModel/requirements.txt 
-            pip install newsrecomendation/DbModel
+#            pip install newsrecomendation/DbModel
       - run:
           name: Install api dependencies
           command:  | 
