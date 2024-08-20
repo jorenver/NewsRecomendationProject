@@ -46,10 +46,10 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - test-python
-      - build-package:
-          requires:
-            - test-python
-    # - deploy:
-    #     requires:
-    #       - build-package
+      - back_end
+#      - build-package:
+#          requires:
+#            - test-python
+#     - deploy:
+#         requires:
+#           - build-package
