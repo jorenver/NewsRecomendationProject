@@ -15,9 +15,7 @@ jobs:
             pkg-manager: pip-dist
       - run:
           name: Install DbModel
-          command: |
-            pip install -r newsrecomendation/DbModel/requirements.txt 
-#            pip install newsrecomendation/DbModel
+          command: pip install -r newsrecomendation/DbModel/requirements.txt
       - run:
           name: Install api dependencies
           command:  | 
