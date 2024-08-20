@@ -45,7 +45,7 @@ jobs:
           name: Install Dependencies
           command: |
             pwd
-            cd Web
+            cd web
             ls
             npm install --force
       - run:
