@@ -52,7 +52,7 @@ jobs:
           working_directory: ~/Web
       - persist_to_workspace:
           root: src
-          paths: ~/Web/dist/newsrecomendation
+          paths: Web/dist/newsrecomendation
 deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
