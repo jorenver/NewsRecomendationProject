@@ -35,13 +35,13 @@ jobs:
           name: Run tests
           command: python -m unittest discover -s test
 
-  deploy:
-    executor:
-      name: aws-ecr/default
-      image: ubuntu-2004:202111-02
-    docker:
-      - image: cimg/base:stable
-    steps:
+#  deploy:
+#    executor:
+#      name: aws-ecr/default
+#      image: ubuntu-2004:202111-02
+#    docker:
+#      - image: cimg/base:stable
+#    steps:
 
 workflows:
   build-and-test:
