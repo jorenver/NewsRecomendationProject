@@ -1,0 +1,5 @@
+<mat-grid-list cols="4">
+  <mat-grid-tile *ngFor="let article of articles">
+    <app-article-detail class="article-detail" [article]="article"></app-article-detail>
+  </mat-grid-tile>
+</mat-grid-list>

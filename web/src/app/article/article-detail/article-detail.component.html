@@ -1,0 +1,11 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <h2><a href="{{article?.url}}" target="_blank">{{article?.title}}</a></h2>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{article?.description}}</p>
+    <picture>
+      <img mat-card-image src="{{article?.urlToImage}}">
+    </picture>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,69 @@
+version: 2.1
+executors:
+  python-executor:
+    docker:
+      - image: circleci/python:3.8
+    working_directory: ~/repo
+
+orbs:
+  python: circleci/python@2
+  browser-tools: circleci/browser-tools@1.4.6
+
+jobs:
+  back_end:
+    executor: python-executor
+    steps:
+      - checkout
+      - python/install-packages:
+            pkg-manager: pip-dist
+      - run:
+          name: Install DbModel
+          command: |
+            pip install -r newsrecomendation/DbModel/requirements.txt
+            pip install newsrecomendation/DbModel
+      - run:
+          name: Install api dependencies
+          command: pip install -r newsrecomendation/Api/requirements.txt
+      - run:
+          name: Install Analyzer dependencies
+          command:  pip install -r newsrecomendation/DataAnalyzer/requirements.txt
+      - run:
+          name: Install Collector dependencies
+          command: pip install -r newsrecomendation/DataCollector/requirements.txt
+      - run:
+          name: Run tests
+          command: python -m unittest discover -s test
+
+  front_end:
+    docker:
+      - image: cimg/node:22.2.0-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - browser-tools/install-chrome
+      - run:
+          name: Install Dependencies
+          working_directory: ~/repo/web
+          command: npm install --force
+      - run:
+          name: Build Front End
+          working_directory: ~/repo/web
+          command: npm run build
+      - persist_to_workspace:
+          root: web
+          paths: dist/client-app
+deploy:
+    # This is an example deploy job, not actually used by the workflow
+    docker:
+      - image: cimg/base:stable
+    steps:
+      # Replace this with steps to deploy to users
+      - run:
+          name: deploy
+          command: '#e.g. ./deploy.sh'
+
+workflows:
+  build-and-test:
+    jobs:
+      - back_end
+      - front_end
