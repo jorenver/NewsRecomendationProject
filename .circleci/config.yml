@@ -52,18 +52,31 @@ jobs:
       - persist_to_workspace:
           root: web
           paths: dist/client-app
+
 deploy:
-    # This is an example deploy job, not actually used by the workflow
+    working_directory: ~/repo
     docker:
-      - image: cimg/base:stable
+      - image: innovatorjapan/awscli:latest
     steps:
-      # Replace this with steps to deploy to users
+      - attach_workspace:
+          at: .
       - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
+          name: Deploy
+          command: |
+            if [ $CIRCLE_BRANCH = 'main' ]; then
+              aws s3 sync dist/client-app/ s3://news-recomendation-web/ --delete --exact-timestamps;
+            fi
 
 workflows:
   build-and-test:
     jobs:
-      - back_end
-      - front_end
+      - build
+        - back_end
+        - front_end
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
