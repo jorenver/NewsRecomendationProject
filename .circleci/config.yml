@@ -30,7 +30,7 @@ jobs:
           command: python -m unittest discover -s test
 
   front_end:
-    working_directory: ~/Web
+    working_directory: ~/repo
     docker:
       - image: cimg/node:16.13.1-browsers
     steps:
@@ -42,22 +42,15 @@ jobs:
           chromedriver --version
         name: Check install
       - checkout
-#      - run:
-#          name: Install Dependencies
-#          working_directory: ~/repo/src/Web
-#          command: npm install --force
-#      - run:
-#          name: Build Front End
-#          working_directory: ~/repo/src/Web
-#          command: |
-#            npm run build
-      - restore_cache:
-          key: ng-project-{{ .Branch }}-{{ checksum "package-lock.json" }}
-      - run: npm install
-      - save_cache:
-          key: ng-project-{{ .Branch }}-{{ checksum "package-lock.json" }}
-          paths:
-            - "node_modules"
+      - run:
+          name: Install Dependencies
+          working_directory: ~/repo/Web
+          command: npm install --force
+      - run:
+          name: Build Front End
+          working_directory: ~/repo/Web
+          command: |
+            npm run build
       - persist_to_workspace:
           root: src
           paths: ~/Web/dist/newsrecomendation
