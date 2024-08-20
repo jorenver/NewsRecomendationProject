@@ -1,6 +1,5 @@
 import pika
 import time
-
 from dataAnalyzerService import DataAnalyzerService
 from newsrecomendation.DbModel import Connect
 from newsrecomendation.DbModel import Article as ar
