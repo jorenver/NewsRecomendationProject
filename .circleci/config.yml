@@ -38,21 +38,16 @@ jobs:
           command: python -m unittest discover -s test
 
   front_end:
-#    docker:
-#      - image: cimg/node:22.2.0-browsers
-#    working_directory: ~/repo
     executor: node-executor
     steps:
       - checkout
       - run:
           name: Install Dependencies
           command: npm install --force
-          working_directory: ~/repo
       - run:
           name: Build Front End
           command: |
             npm run build
-          working_directory: ~/repo
       - persist_to_workspace:
           root: src
           paths: Web/dist/newsrecomendation
