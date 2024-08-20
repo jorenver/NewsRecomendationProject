@@ -8,6 +8,7 @@ executors:
 orbs:
   python: circleci/python@2
   browser-tools: circleci/browser-tools@1.4.6
+  aws-cli: circleci/aws-cli@4.0
 
 jobs:
   back_end:
