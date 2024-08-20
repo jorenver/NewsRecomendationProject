@@ -1,12 +1,23 @@
 version: 2.1
-orbs:
-  python: circleci/python@2
+executors:
+  python-executor:
+    docker:
+      - image: circleci/python:3.8
+    working_directory: ~/repo
+
+  node-executor:
+    docker:
+      - image: circleci/node:14
+    working_directory: ~/repo
+
+#orbs:
+#  python: circleci/python@2
 jobs:
   back_end:
-    docker:
-      - image: cimg/python:3.8-node
-    working_directory: ~/repo
-#    executor: aws-ecr/default
+#    docker:
+#      - image: cimg/python:3.8-node
+#    working_directory: ~/repo
+    executor: python-executor
     steps:
       - checkout
       - python/install-packages:
@@ -30,22 +41,17 @@ jobs:
           command: python -m unittest discover -s test
 
   front_end:
-    docker:
-      - image: cimg/node:22.2.0-browsers
-    working_directory: ~/repo
+#    docker:
+#      - image: cimg/node:22.2.0-browsers
+#    working_directory: ~/repo
+    executor: node-executor
     steps:
       - checkout
       - run:
           name: Install Dependencies
-          working_directory: ~/repo/Web
           command: npm install --force
-#      - run:
-#          name: Run Front End Unit Tests
-#          working_directory: ~/repo/src/Web
-#          command: npm run test:ci
       - run:
           name: Build Front End
-          working_directory: ~/repo/Web
           command: |
             npm run build
       - persist_to_workspace:
