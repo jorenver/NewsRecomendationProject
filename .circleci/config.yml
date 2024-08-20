@@ -54,18 +54,19 @@ jobs:
           paths: dist/client-app
 
 deploy:
-    working_directory: ~/repo
-    docker:
-      - image: innovatorjapan/awscli:latest
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Deploy
-          command: |
-            if [ $CIRCLE_BRANCH = 'main' ]; then
-              aws s3 sync dist/client-app/ s3://news-recomendation-web/ --delete --exact-timestamps;
-            fi
+  executor:
+    name: aws-ecr/default
+    image: ubuntu-2004:202111-02
+  working_directory: ~/repo
+  steps:
+    - attach_workspace:
+        at: .
+    - run:
+        name: Deploy
+        command: |
+          if [ $CIRCLE_BRANCH = 'main' ]; then
+            aws s3 sync dist/client-app/ s3://news-recomendation-web/ --delete --exact-timestamps;
+          fi
 
 workflows:
   build-deploy:
