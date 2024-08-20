@@ -45,9 +45,8 @@ jobs:
           name: Install Dependencies
           command: |
             pwd
-            cd web
-            ls
-            npm install --force
+            cd Web | pwd | ls
+            cd Web | npm install --force
       - run:
           name: Build Front End
           command: npm run build ~/repo/Web
