@@ -34,6 +34,7 @@ jobs:
     docker:
       - image: cimg/node:16.13.1-browsers
     steps:
+      - checkout
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run:
@@ -41,7 +42,6 @@ jobs:
           google-chrome --version
           chromedriver --version
         name: Check install
-      - checkout
       - run:
           name: Install Dependencies
           working_directory: ~/repo/Web
@@ -49,8 +49,7 @@ jobs:
       - run:
           name: Build Front End
           working_directory: ~/repo/Web
-          command: |
-            npm run build
+          command: pm run build
       - persist_to_workspace:
           root: src
           paths: ~/Web/dist/newsrecomendation
