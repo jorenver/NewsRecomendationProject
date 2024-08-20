@@ -35,25 +35,30 @@ $ pip install -r newsrecomendation/DbModel
 $ cd infra && docker-compose up
 ```
 
-4. Run DataAnalyzer
+4. Run Test
+
+```bash
+$ python -m unittest discover -s tests
+```
+5. Run DataAnalyzer
 
 ```bash
 $ python newsrecomendation/DataAnalyzer/src/analyzer.py
 ```
 
-5. Run API
+6.Run API
 
 ```bash
 $ python newsrecomendation/Api/src/app.py
 ```
 
-5. Run DataCollector
+7. Run DataCollector
 
 ```bash
 $ python newsrecomendation/DataCollector/src/collector.py
 ```
 
-6. Run Web Aplication
+8. Run Web Aplication
 ```bash
 $ cd Web
 $ pip install

@@ -6,7 +6,7 @@ def main():
     try:
         service = NewsCollectorService()
         sources = service.get_sources()
-        producer = DataAnalyzerProducer()
+        producer = DataAnalyzerProducer('localhost')
 
         for s in sources:
             print(f'Source {s["id"]}')
@@ -20,7 +20,8 @@ def main():
                     print(f"{na.id} -> {na.url}")
 
         producer.send_message()
-    except:
+    except Exception as e:
+        print(e)
         print("An exception occurred")
 
 

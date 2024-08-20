@@ -5,7 +5,7 @@ from newsrecomendation.DbModel.src.Article import Article
 
 
 class TestArticleService(unittest.TestCase):
-    @patch('DbModel.src.Article.Article.objects')
+    @patch('newsrecomendation.DbModel.src.Article.Article.objects')
     def test_get_articles(self, mock_objects):
         service = ArticleService()
 
@@ -49,7 +49,7 @@ class TestArticleService(unittest.TestCase):
         ]
         self.assertEqual(result, expected_result)
 
-    @patch('DbModel.src.Article.Article.objects')
+    @patch('newsrecomendation.DbModel.src.Article.Article.objects')
     def test_get_categories(self, mock_aggregate):
         service = ArticleService()
 

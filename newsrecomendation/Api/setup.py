@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='dbmodel',
-    version='0.1.5',
+    name='api',
+    version='0.1.4',
     packages=find_packages(),
     install_requires=[],
     author='Jorge Vergara',

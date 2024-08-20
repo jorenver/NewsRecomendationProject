@@ -3,3 +3,6 @@ dbmodel.egg-info/PKG-INFO
 dbmodel.egg-info/SOURCES.txt
 dbmodel.egg-info/dependency_links.txt
 dbmodel.egg-info/top_level.txt
+src/Article.py
+src/Connect.py
+src/__init__.py
