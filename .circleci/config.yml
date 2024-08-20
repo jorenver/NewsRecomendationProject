@@ -47,8 +47,8 @@ jobs:
           command: npm install ~/Web --force
       - run:
           name: Build Front End
-          working_directory: ~/Web
-          command: npm run build ~/Web
+          working_directory: ~/repo/Web
+          command: npm run build ~/repo/Web
       - persist_to_workspace:
           root: Web
           paths: dist/newsrecomendation
