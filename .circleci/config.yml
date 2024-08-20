@@ -8,19 +8,19 @@ jobs:
     docker:
       - image: cimg/python:3.8-node
     working_directory: ~/repo
-#    executor: aws-ecr/default
+    executor: aws-ecr/default
     steps:
       - checkout
       - python/install-packages:
             pkg-manager: pip-dist
       - run:
           name: Install DbModel
-          command: pip install -r newsrecomendation/DbModel/requirements.txt
+          command: |
+            pip install -r newsrecomendation/DbModel/requirements.txt
+            pip install newsrecomendation/DbModel
       - run:
           name: Install api dependencies
-          command:  | 
-            pip install -r newsrecomendation/Api/requirements.txt 
-            pip install -r newsrecomendation/DbModel
+          command: pip install -r newsrecomendation/Api/requirements.txt
       - run:
           name: Install Analyzer dependencies
           command:  pip install -r newsrecomendation/DataAnalyzer/requirements.txt
