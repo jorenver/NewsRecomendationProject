@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <span>News Recomendation</span>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    aria-label="Download Articles"
+    (click)="showCollectorProcessDialog()"
+  >
+    <mat-icon>downloading</mat-icon>
+  </button>
+</mat-toolbar>
+<app-selection-search
+  [label]="label"
+  [options]="categories"
+  (onSelectionChange)="changeCategory($event)">
+</app-selection-search>
+<app-article-list [articles]="articles"></app-article-list>
