@@ -35,7 +35,6 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - browser-tools/install-chrome
       - run:
           name: Install Dependencies
           working_directory: ~/repo/src/Web
