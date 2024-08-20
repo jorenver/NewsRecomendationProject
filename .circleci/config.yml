@@ -43,16 +43,14 @@ jobs:
       - browser-tools/install-chrome
       - run:
           name: Install Dependencies
-          working_directory: ~/repo/Web
-          command: |
-            ls
-            npm install --force
+          working_directory: ~/repo/web
+          command: npm install --force
       - run:
           name: Build Front End
-          working_directory: ~/repo/Web
+          working_directory: ~/repo/web
           command: npm run build
       - persist_to_workspace:
-          root: Web
+          root: web
           paths: dist/newsrecomendation
 deploy:
     # This is an example deploy job, not actually used by the workflow
