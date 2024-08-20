@@ -51,7 +51,7 @@ jobs:
           command: npm run build
       - persist_to_workspace:
           root: web
-          paths: dist/newsrecomendation
+          paths: dist/client-app
 deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
