@@ -5,11 +5,6 @@ executors:
       - image: circleci/python:3.8
     working_directory: ~/repo
 
-  node-executor:
-    docker:
-      - image: circleci/node:14
-    working_directory: ~/repo
-
 orbs:
   python: circleci/python@2
 jobs:
@@ -38,9 +33,12 @@ jobs:
           command: python -m unittest discover -s test
 
   front_end:
-    executor: node-executor
+    docker:
+      - image: cimg/node:22.2.0-browsers
+    working_directory: ~/repo
     steps:
       - checkout
+      - browser-tools/install-chrome
       - run:
           name: Install Dependencies
           working_directory: ~/repo/Web
@@ -48,8 +46,7 @@ jobs:
       - run:
           name: Build Front End
           working_directory: ~/repo/Web
-          command: |
-            npm run build
+          command: npm run build
       - persist_to_workspace:
           root: Web
           paths: dist/newsrecomendation
