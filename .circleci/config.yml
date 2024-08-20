@@ -8,7 +8,7 @@ executors:
   node-executor:
     docker:
       - image: circleci/node:14
-    working_directory: ~/repo/Web
+    working_directory: ~/repo
 
 orbs:
   python: circleci/python@2
@@ -44,10 +44,12 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install --force
+          working_directory: ~/repo/Web
       - run:
           name: Build Front End
           command: |
             npm run build
+          working_directory: ~/repo/Web
       - persist_to_workspace:
           root: src
           paths: Web/dist/newsrecomendation
