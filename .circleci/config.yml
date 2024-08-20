@@ -43,11 +43,11 @@ jobs:
       - browser-tools/install-chrome
       - run:
           name: Install Dependencies
-          working_directory: ~/repo/Web
+          working_directory: ~/Web
           command: npm install --force
       - run:
           name: Build Front End
-          working_directory: ~/repo/Web
+          working_directory: ~/Web
           command: npm run build
       - persist_to_workspace:
           root: Web
