@@ -43,7 +43,10 @@ jobs:
       - browser-tools/install-chrome
       - run:
           name: Install Dependencies
-          command: npm install ~/repo/Web --force
+          command: |
+            pwd
+            ls
+            npm install ~/repo/Web --force
       - run:
           name: Build Front End
           command: npm run build ~/repo/Web
