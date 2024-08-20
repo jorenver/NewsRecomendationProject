@@ -27,7 +27,7 @@ $ source ./venv/bin/activate
 $ pip install -r newsrecomendation/Api/requirements.txt 
 $ pip install -r newsrecomendation/DataAnalyzer/requirements.txt 
 $ pip install -r newsrecomendation/DataCollector/requirements.txt 
-$ pip install -r newsrecomendation/DbModel
+$ pip install newsrecomendation/DbModel 
 ```
 3. Up MongoDB and RabbitMQ
 
