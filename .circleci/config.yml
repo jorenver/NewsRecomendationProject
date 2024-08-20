@@ -44,11 +44,11 @@ jobs:
       - run:
           name: Install Dependencies
           working_directory: ~/Web
-          command: npm install --force
+          command: npm install ~/Web --force
       - run:
           name: Build Front End
           working_directory: ~/Web
-          command: npm run build
+          command: npm run build ~/Web
       - persist_to_workspace:
           root: Web
           paths: dist/newsrecomendation
