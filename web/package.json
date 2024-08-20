@@ -1,5 +1,5 @@
 {
-  "name": "ews-recomendation-web",
+  "name": "news-recomendation-web",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
