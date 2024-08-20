@@ -46,6 +46,7 @@ jobs:
           command: |
             pwd
             ls
+            ls Web
             npm install ~/repo/Web --force
       - run:
           name: Build Front End
