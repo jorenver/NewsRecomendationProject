@@ -3,18 +3,16 @@
 version: 2.1
 orbs:
   python: circleci/python@2
-  node: circleci/node@5.2.0
-  aws-cli: circleci/aws-cli@4.0
-  aws-ecr: circleci/aws-ecr@7.3.0
-  browser-tools: circleci/browser-tools@1.4.6
 jobs:
   back_end:
     docker:
       - image: cimg/python:3.8-node
     working_directory: ~/repo
-    executor: aws-ecr/default
+#    executor: aws-ecr/default
     steps:
       - checkout
+      - python/install-packages:
+            pkg-manager: pip-dist
       - run:
           name: Install DbModel
           command: |
@@ -35,21 +33,17 @@ jobs:
           name: Run tests
           command: python -m unittest discover -s test
 
-#  deploy:
-#    executor:
-#      name: aws-ecr/default
-#      image: ubuntu-2004:202111-02
-#    docker:
-#      - image: cimg/base:stable
-#    steps:
+deploy:
+    # This is an example deploy job, not actually used by the workflow
+    docker:
+      - image: cimg/base:stable
+    steps:
+      # Replace this with steps to deploy to users
+      - run:
+          name: deploy
+          command: '#e.g. ./deploy.sh'
 
 workflows:
   build-and-test:
     jobs:
       - back_end
-#      - build-package:
-#          requires:
-#            - test-python
-#     - deploy:
-#         requires:
-#           - build-package
