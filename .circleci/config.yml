@@ -1,5 +1,3 @@
-# This config was automatically generated from your source code
-# Stacks detected: deps:python:.,file:setup.py:.
 version: 2.1
 orbs:
   python: circleci/python@2
@@ -31,6 +29,33 @@ jobs:
           name: Run tests
           command: python -m unittest discover -s test
 
+  front_end:
+    docker:
+      - image: cimg/node:22.2.0-browsers
+    environment:
+      CHROME_BIN: '/usr/bin/google-chrome-stable'
+      NG_CLI_ANALYTICS: 'ci'
+      NODE_OPTIONS: '--max_old_space_size=7500'
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - browser-tools/install-chrome
+      - run:
+          name: Install Dependencies
+          working_directory: ~/repo/src/Web
+          command: npm install --force
+#      - run:
+#          name: Run Front End Unit Tests
+#          working_directory: ~/repo/src/Web
+#          command: npm run test:ci
+      - run:
+          name: Build Front End
+          working_directory: ~/repo/src/Web
+          command: |
+            npm run build
+      - persist_to_workspace:
+          root: src
+          paths: Web/dist/newsrecomendation
 deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
@@ -45,3 +70,4 @@ workflows:
   build-and-test:
     jobs:
       - back_end
+      - front_end
