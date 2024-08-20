@@ -52,21 +52,20 @@ jobs:
       - persist_to_workspace:
           root: web
           paths: dist/client-app
-
-deploy:
-  executor:
-    name: aws-ecr/default
-    image: ubuntu-2004:202111-02
-  working_directory: ~/repo
-  steps:
-    - attach_workspace:
-        at: .
-    - run:
-        name: Deploy
-        command: |
-          if [ $CIRCLE_BRANCH = 'main' ]; then
-            aws s3 sync dist/client-app/ s3://news-recomendation-web/ --delete --exact-timestamps;
-          fi
+  deploy:
+    executor:
+      name: aws-ecr/default
+      image: ubuntu-2004:202111-02
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Deploy
+          command: |
+            if [ $CIRCLE_BRANCH = 'main' ]; then
+              aws s3 sync dist/client-app/ s3://news-recomendation-web/ --delete --exact-timestamps;
+            fi
 
 workflows:
   build-deploy:
